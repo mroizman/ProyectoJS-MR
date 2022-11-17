@@ -61,7 +61,6 @@ font-size: 22px;}
     z-index: 9;
     top: 12vh;
     scrollbar-color:none;
-    transition:all 10s;
 }
 .modal-container::-webkit-scrollbar {
     display: none;
@@ -72,7 +71,7 @@ font-size: 22px;}
     background-color: black;
     color: white;
     width: 100%;
-    transition: all 1s;
+    
 }
 .modal-header-tittle {
     justify-self: start;
@@ -87,7 +86,7 @@ font-size: 22px;}
     align-items: center;
     width: 70%;
     margin: 10px;
-    transition:all 1s
+    
 }
 
 .modal-container > div > img {
@@ -122,4 +121,13 @@ font-size: 22px;}
     right: 14px;
     position: absolute;
     display: none;
+}
+.sumar {
+    cursor: pointer;
+}
+.restar {
+    cursor: pointer;
+}
+.quitar {
+    cursor: pointer;
 }

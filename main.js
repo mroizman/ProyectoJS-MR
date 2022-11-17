@@ -69,9 +69,7 @@ if (repeat) {
 
 
 
-const saveLocal = () =>  {
-  localStorage.setItem("carrito",JSON.stringify (carrito))
-}
+
 
 
 
@@ -104,19 +102,42 @@ const pintarCarrito = () => {
     <img src="${product.img}"
     <h3> ${product.nombre}</h3>
     <p>$ ${product.precio}</p>
+    <span class="restar"> - </span>
     <p>Cantidad:  ${product.cantidad}</p>
+    <span class="sumar"> + </span>
     <p>Total $ :  ${product.cantidad * product.precio}</p>
+    <span class="quitar"> ❌ </span>
     `
 
     modalContainer.append(carritoContent)
 
-    let eliminar = document.createElement ("span");
+    let sumar = carritoContent.querySelector (".sumar")
+    
+    sumar.addEventListener("click", () => {
+      product.cantidad++
+      saveLocal ()
+      pintarCarrito ()
+    }) 
 
-    eliminar.innerText = "❌";
-    eliminar.className = "delete-product";
-    carritoContent.append(eliminar);
+    let restar = carritoContent.querySelector(".restar")
 
-    eliminar.addEventListener("click", eliminarProducto);
+    restar.addEventListener("click", () => {
+      if(product.cantidad !== 1) {
+      product.cantidad--}
+      saveLocal ()
+      pintarCarrito()
+      
+    })
+
+    let quitar = carritoContent.querySelector (".quitar")
+    
+    quitar.addEventListener("click", () => {
+      eliminarProducto (product.id)
+      saveLocal ()
+      pintarCarrito ()
+    }) 
+
+    
 });
 const total = carrito.reduce ((acc, el) => acc + el.precio * el.cantidad, 0)
 
@@ -124,21 +145,32 @@ const totalBuying = document.createElement("div")
 totalBuying.className = "total-content"
 totalBuying.innerHTML = `total a pagar: $${total} `
 modalContainer.append(totalBuying)
-}
+};
 
 verCarrito.addEventListener("click", pintarCarrito)
 
-const eliminarProducto = () => {
-  const foundId = carrito.find ((element) => element.id)
-
+const eliminarProducto = (id) => {
+  const foundId = carrito.find ((element) => element.id === id)
+console.log(foundId)
   carrito = carrito.filter((carritoId) => {
     return carritoId !== foundId;
   });
   carritoCounter ();
+  saveLocal ();
   pintarCarrito();
 };
 
 const carritoCounter = () => {
   cantidadCarrito.style.display = "block";
-  cantidadCarrito.innerText = carrito.length;
+  const carritoLength = carrito.length;
+  localStorage.setItem("carritoLength", JSON.stringify(carritoLength))
+  cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"));
+  
+
+}
+
+carritoCounter()
+
+const saveLocal = () =>  {
+  localStorage.setItem("carrito",JSON.stringify (carrito))
 }
