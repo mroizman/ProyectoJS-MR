@@ -23,7 +23,7 @@ const productos = [
     id: 5, nombre: "Iphone 13", precio: 240000, img:"https://d2ye0ltusw47tz.cloudfront.net/24838748-home_default/i-phone-13-256-gb-pink.jpg", cantidad:1,
    },
    {
-    id: 6, nombre: "Iphone 14", precio: 300000, img:"https://rentik.com/663-home_default/iphone-14-pro.jpg", cantidad:1,
+    id: 6, nombre: "Iphone 14", precio: 300000, img:"https://liberar-tu-movil.es/foto/12_34_54_Apple_iPhone_14_plus_zloty_250_x_250_poprawny.jpg", cantidad:1,
    },
 ]
 

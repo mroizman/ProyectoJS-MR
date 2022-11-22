@@ -9,10 +9,7 @@
     background-color: black;
 }
 .box {
-    background-image:url(./img/og__c6pnqxxo9e6a.jpg) ;
-    height: 80vh;
-    max-width: 100%;
-    background-size: cover;
+    height: 10vh;
     margin-bottom: 120px;
 }
 .shop-content {
