@@ -3,6 +3,7 @@ const verCarrito = document.getElementById("verCarrito")
 const modalContainer = document.getElementById("modal-container")
 const cantidadCarrito = document.getElementById("cantidadCarrito")
 
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
 const productos = [
@@ -25,6 +26,11 @@ const productos = [
     id: 6, nombre: "Iphone 14", precio: 300000, img:"https://rentik.com/663-home_default/iphone-14-pro.jpg", cantidad:1,
    },
 ]
+
+
+
+
+
 
 productos.forEach((product)=>  {
 
@@ -108,6 +114,7 @@ const pintarCarrito = () => {
     <p>Total $ :  ${product.cantidad * product.precio}</p>
     <span class="quitar"> ❌ </span>
     `
+    
 
     modalContainer.append(carritoContent)
 
@@ -145,7 +152,19 @@ const totalBuying = document.createElement("div")
 totalBuying.className = "total-content"
 totalBuying.innerHTML = `total a pagar: $${total} `
 modalContainer.append(totalBuying)
+
+const finalizarCompra = document.createElement("div")
+finalizarCompra.className = "finalizarCompra"
+finalizarCompra.innerHTML = `<button class="finalizarCompra"> FINALIZAR COMPRA </button>`
+modalContainer.append(finalizarCompra)
+
+let finalizar = finalizarCompra.querySelector(".finalizarCompra")
+finalizar.addEventListener("click", () => {
+  swal("Felicitaciones", "Usted ha realizado la compra con éxito", "success")
+} )
 };
+
+
 
 verCarrito.addEventListener("click", pintarCarrito)
 
