@@ -6,32 +6,29 @@ const cantidadCarrito = document.getElementById("cantidadCarrito")
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 
-const productos = [
-   {
-    id: 1, nombre: "Iphone 8", precio: 100000, img:"https://www.cellshop.com/10321011-home_default/iphone-swap-xr-64gb-white-grado-b.jpg", cantidad:1,
-   },
-   {
-    id: 2, nombre: "Iphone X", precio: 120000, img:"https://icanarias.online/35022-home_default/iphone-12-128gb-negro.jpg" , cantidad:1,
-   },
-   {
-    id: 3, nombre: "Iphone 11", precio: 140000, img:"http://www.vicionet.com/Vel/418-home_default/apple-iphone-11-128gb-.jpg" , cantidad:1,
-   },
-   {
-    id: 4, nombre: "Iphone 12", precio: 180000, img:"https://amonpul.com/wp-content/uploads/2022/08/iphone-12-2-250x250.jpg", cantidad:1,
-   },
-   {
-    id: 5, nombre: "Iphone 13", precio: 240000, img:"https://d2ye0ltusw47tz.cloudfront.net/24838748-home_default/i-phone-13-256-gb-pink.jpg", cantidad:1,
-   },
-   {
-    id: 6, nombre: "Iphone 14", precio: 300000, img:"https://liberar-tu-movil.es/foto/12_34_54_Apple_iPhone_14_plus_zloty_250_x_250_poprawny.jpg", cantidad:1,
-   },
-]
+const productos = []
 
+const catalogoJson = `productos.json`;
+console.log(catalogoJson);
 
+async function EjecutarCatalogo() {
+  const respuesta = await fetch(catalogoJson);
+  const datosDeCatalogoJson = await respuesta.json();
+  CargarDatosJsonEnLista(datosDeCatalogoJson);
+  cargaDeProductos();
 
+  console.log("Catalogo añadido a la Web!...")
+}
 
+EjecutarCatalogo();
+function CargarDatosJsonEnLista(datos){
+  datos.forEach((producto) => {
+    productos.push(producto);
+    //permite agregar los datos del catalogoJuegos.json a la lista de juegos.
+  });
+}
 
-
+function cargaDeProductos(){
 productos.forEach((product)=>  {
 
   let content = document.createElement("div")
@@ -80,6 +77,7 @@ if (repeat) {
 
 
 });
+}
 const pintarCarrito = () => {
   modalContainer.innerHTML = ""
     modalContainer.style.display= "flex"
